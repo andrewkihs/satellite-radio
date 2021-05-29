@@ -1,0 +1,19 @@
+{
+  "name": "satellite-radio",
+  "version": "1.0.0",
+  "description": "Satellite Radio is a data visualizer that fetches asteroid data to inform video and audio across the web page.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andrewkihs/satellite-radio.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andrewkihs/satellite-radio/issues"
+  },
+  "homepage": "https://github.com/andrewkihs/satellite-radio#readme"
+}

@@ -14,7 +14,7 @@ class GameView {
       outer.game.yDim = window.innerHeight;
       outer.game.move(outer.ctx);
       outer.game.draw(outer.ctx);
-    }, 1000);
+    }, 1);
   }
 }
 

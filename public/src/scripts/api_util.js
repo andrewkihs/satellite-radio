@@ -7,10 +7,13 @@
 
 const axios = require("axios");
 
+let isbn = "0201558025";
+
 const receiveData = axios
-  .get(`/books/0201558025`)
+  .get(`/satellites/active`)
   .then((response) => {
     console.log(response);
+    return response;
   })
   .catch(function (error) {
     console.log(error);

@@ -1,12 +1,14 @@
 import Satellite from "./satellite.js";
 import Star from "./star.js";
 class Game {
-  constructor(xDim, yDim) {
+  constructor(xDim, yDim, satellitesObj, audioCtx) {
     this.xDim = xDim;
     this.yDim = yDim;
     this.satellites = [];
     this.stars = [];
-    this.addSatellites();
+    this.satellitesObj = satellitesObj;
+    this.audioCtx = audioCtx;
+    this.addSatellites(satellitesObj);
     this.addStars();
   }
 
@@ -22,9 +24,11 @@ class Game {
       this.stars.push(currentStar);
     }
   }
-  addSatellites() {
-    for (let i = 0; i < 4; i++) {
-      let currentSatellite = new Satellite(this.randomPos(), [3, 4], 30, this);
+  addSatellites(satellitesObj) {
+    for (let i = 0; i < 100; i++) {
+      // debugger;
+      console.log(satellitesObj[i]);
+      let currentSatellite = new Satellite(this.randomPos(), [0, 1], 2, this);
       this.satellites.push(currentSatellite);
     }
   }

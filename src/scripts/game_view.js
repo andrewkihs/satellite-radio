@@ -8,8 +8,10 @@ class GameView {
 
   start() {
     const outer = this;
-    debugger;
     setInterval(function () {
+      // debugger;
+      outer.game.xDim = window.innerWidth;
+      outer.game.yDim = window.innerHeight;
       outer.game.move(outer.ctx);
       outer.game.draw(outer.ctx);
     }, 1000);

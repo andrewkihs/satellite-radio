@@ -41,15 +41,15 @@ class Game {
   }
 
   draw(ctx) {
-    ctx.clearRect(0, 0, this.xDim, this.yDim);
-    ctx.fillStyle = "black";
-    ctx.fillRect(0, 0, this.xDim, this.yDim);
-    this.stars.forEach((star) => star.draw(ctx));
-    this.satellites.forEach((satellite) => satellite.draw(ctx));
+    // ctx.clearRect(0, 0, this.xDim, this.yDim);
+    // ctx.fillStyle = "black";
+    // ctx.fillRect(0, 0, this.xDim, this.yDim);
+    // this.stars.forEach((star) => star.draw(ctx));
+    // this.satellites.forEach((satellite) => satellite.draw(ctx));
   }
 
   move(ctx) {
-    this.satellites.forEach((satellite) => satellite.move(ctx));
+    // this.satellites.forEach((satellite) => satellite.move(ctx));
   }
 }
 

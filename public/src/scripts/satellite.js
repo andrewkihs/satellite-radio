@@ -1,13 +1,21 @@
 import map_range from "./math_util";
 class Satellite {
-  constructor(pos, vel, radius, game) {
-    this.pos = pos;
-    this.vel = vel;
-    this.radius = radius;
+  constructor(satRec, game) {
+    this.date = new Date();
+    this.positionAndVelocity = satellite.propagate(satRec, this.date);
+    this.gmst = satellite.gstime(this.date);
+
+    this.position = satellite.eciToGeodetic(
+      this.positionAndVelocity.position,
+      this.gmst
+    );
+
     this.game = game;
     this.audioCtx = game.audioCtx;
-    this.oscillator = game.audioCtx.createOscillator();
-    this.startOsc();
+
+    console.log(this.position.longitude); // in radians
+    console.log(this.position.latitude); // in radians
+    console.log(this.position.height); // in km
   }
 
   startOsc() {
@@ -28,28 +36,28 @@ class Satellite {
   }
 
   draw(ctx) {
-    ctx.beginPath();
-    ctx.arc(this.pos[0], this.pos[1], 2, 0, 2 * Math.PI, true);
-    ctx.strokeStyle = "blue";
-    ctx.lineWidth = 10;
-    ctx.fillStyle = "#46C016";
-    ctx.fill();
-    const newFreq = map_range(this.pos[1], 0, this.game.yDim, 0, 20000);
-    // console.log(newFreq);
-    debugger;
-    this.oscillator.frequency.value = newFreq;
+    // ctx.beginPath();
+    // ctx.arc(this.pos[0], this.pos[1], 2, 0, 2 * Math.PI, true);
+    // ctx.strokeStyle = "blue";
+    // ctx.lineWidth = 10;
+    // ctx.fillStyle = "#46C016";
+    // ctx.fill();
+    // const newFreq = map_range(this.pos[1], 0, this.game.yDim, 0, 20000);
+    // // console.log(newFreq);
+    // debugger;
+    // this.oscillator.frequency.value = newFreq;
   }
 
   move() {
-    this.pos[0] += this.vel[0];
-    this.pos[1] += this.vel[1];
+    // this.pos[0] += this.vel[0];
+    // this.pos[1] += this.vel[1];
     // debugger;
-    if (this.isOutOfBounds(this.pos)) {
-      this.pos = [
-        this.wrap(this.pos[0], this.game.xDim),
-        this.wrap(this.pos[1], this.game.yDim),
-      ];
-    }
+    // if (this.isOutOfBounds(this.pos)) {
+    //   this.pos = [
+    //     this.wrap(this.pos[0], this.game.xDim),
+    //     this.wrap(this.pos[1], this.game.yDim),
+    //   ];
+    // }
   }
   isOutOfBounds(pos) {
     // debugger;

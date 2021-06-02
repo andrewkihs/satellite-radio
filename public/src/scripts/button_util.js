@@ -1,5 +1,5 @@
 const handlePlay = (audioContext) => {
-  debugger;
+  // debugger;
   const audioCtx = audioContext;
   const button = document.getElementById("play_pause");
   button.addEventListener(
@@ -14,7 +14,7 @@ const handlePlay = (audioContext) => {
         oscillator.frequency.value = 440; // value in hertz
         oscillator.start(0);
         // oscillator.connect(audioCtx.destination);
-        debugger;
+        // debugger;
       } else {
         audioCtx.suspend();
       }

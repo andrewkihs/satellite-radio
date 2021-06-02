@@ -16,15 +16,19 @@ app.get("/satellites/active", (request, response) => {
   //
   //celestrak.com/NORAD/elements/gp.php?GROUP=ACTIVE&FORMAT=JSON
   http: fetch(
-    `https://celestrak.com/NORAD/elements/gp.php?GROUP=ACTIVE&FORMAT=JSON`
+    `https://celestrak.com/NORAD/elements/gp.php?GROUP=ACTIVE&FORMAT=TLE`
   )
     .then((response) => {
-      return response.text();
+      return response;
     })
     .then((body) => {
-      let results = JSON.parse(body);
-      console.log(results); // logs to server
-      response.send(results); // sends to frontend
+      debugger;
+      console.log("failed response");
+      console.log(body);
+      // return body;
+      // let results = JSON.parse(body);
+      // console.log(results); // logs to server
+      response.send(body); // sends to frontend
     });
 });
 

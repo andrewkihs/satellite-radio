@@ -1,14 +1,15 @@
 import Satellite from "./satellite.js";
 import Star from "./star.js";
+import { sgp4 } from "satellite.js";
 class Game {
-  constructor(xDim, yDim, satellitesObj, audioCtx) {
+  constructor(xDim, yDim, tle, audioCtx) {
     this.xDim = xDim;
     this.yDim = yDim;
     this.satellites = [];
     this.stars = [];
-    this.satellitesObj = satellitesObj;
+    this.tle = tle;
     this.audioCtx = audioCtx;
-    this.addSatellites(satellitesObj);
+    this.addSatellites(tle);
     this.addStars();
   }
 
@@ -24,13 +25,19 @@ class Game {
       this.stars.push(currentStar);
     }
   }
-  addSatellites(satellitesObj) {
-    for (let i = 0; i < 100; i++) {
-      // debugger;
-      console.log(satellitesObj[i]);
-      let currentSatellite = new Satellite(this.randomPos(), [0, 1], 2, this);
-      this.satellites.push(currentSatellite);
-    }
+  addSatellites(tle) {
+    const satrec = satellite.twoline2satrec(
+      this.tle.split("\n")[0].trim(),
+      this.tle.split("\n")[1].trim()
+    );
+    // debugger;
+
+    // for (let i = 0; i < 100; i++) {
+    //   // debugger;
+    //   console.log(satellitesObj[i]);
+    let currentSatellite = new Satellite(satrec, this);
+    this.satellites.push(currentSatellite);
+    // }
   }
 
   draw(ctx) {

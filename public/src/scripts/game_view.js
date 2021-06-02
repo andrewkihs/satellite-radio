@@ -93,9 +93,9 @@ class GameView {
     // scene.add(sphere);
     const satRecs = this.satRecs;
 
-    camera.position.z = 1000;
-    camera.position.x = -200;
-    camera.position.y = 500;
+    camera.position.z = 700;
+    camera.position.x = 0;
+    camera.position.y = 0;
 
     const animate = () => {
       // game.draw(ctx);
@@ -109,6 +109,7 @@ class GameView {
         debugger;
         satellites.geometry.vertices[i] = satelliteVectorFunc(satRecs[i], date);
       }
+      satellites.geometry.verticesNeedUpdate = true;
       renderer.render(scene, camera);
     };
 

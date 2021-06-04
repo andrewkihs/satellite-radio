@@ -16,25 +16,8 @@ app.get("/satellites/active", (request, response) => {
   //
   //celestrak.com/NORAD/elements/gp.php?GROUP=ACTIVE&FORMAT=JSON
   http: fetch(
-    `https://celestrak.com/NORAD/elements/gp.php?GROUP=ACTIVE&FORMAT=TLE`
+    `https://celestrak.com/NORAD/elements/gp.php?GROUP=ACTIVE&FORMAT=JSON`
   )
-    .then((response) => {
-      return response;
-    })
-    .then((body) => {
-      debugger;
-      console.log("failed response");
-      console.log(body);
-      // return body;
-      // let results = JSON.parse(body);
-      // console.log(results); // logs to server
-      response.send(body); // sends to frontend
-    });
-});
-
-// create a search route
-app.get("/search", (request, response) => {
-  fetch(`http://openlibrary.org/search.json?q=${request.query.string}`)
     .then((response) => {
       return response.text();
     })
@@ -42,6 +25,30 @@ app.get("/search", (request, response) => {
       let results = JSON.parse(body);
       console.log(results);
       response.send(results);
+    });
+});
+
+// create a search route
+
+var config = {
+  headers: {
+    "Content-Length": 0,
+    "Content-Type": "text/plain",
+  },
+  responseType: "text",
+};
+
+app.get("/satellites/tle", (request, response) => {
+  response.header("Content-type", "text/html");
+  http: fetch(
+    `https://celestrak.com/NORAD/elements/gp.php?GROUP=ACTIVE&FORMAT=TLE`
+  )
+    .then((response) => {
+      return response.text();
+    })
+    .then((body) => {
+      console.log(body);
+      response.send(body);
     });
 });
 

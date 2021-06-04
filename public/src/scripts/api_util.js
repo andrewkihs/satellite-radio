@@ -1,21 +1,20 @@
-// const init = {
-//   method: "GET",
-//   headers: "Access-Control-Allow-Origin",
-//   mode: "cors",
-//   cache: "default",
-// };
-
 const axios = require("axios");
 
 let isbn = "0201558025";
 
 const receiveData = axios
-  .get(`/satellites/active`)
+  .get(`/satellites/tle`)
   .then((response) => {
-    console.log(response);
-    return response;
+    const split = response.data.split("\r\n");
+    let newData = [];
+    for (let i = 0; i < split.length - 2; i += 3) {
+      const two = split[i + 1].concat(" ", "\n", " ", split[i + 2]);
+      newData.push(two);
+    }
+    return newData;
   })
   .catch(function (error) {
+    debugger;
     console.log(error);
   });
 

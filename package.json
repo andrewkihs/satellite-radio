@@ -53,8 +53,10 @@
     "webpack-merge": "^5.7.3"
   },
   "dependencies": {
+    "@types/node": "^15.9.0",
     "axios": "^0.21.1",
     "express": "^4.17.1",
+    "fs": "0.0.1-security",
     "node-fetch": "^2.6.1",
     "node-sass": "^6.0.0",
     "nodemon": "^1.19.0",

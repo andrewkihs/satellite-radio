@@ -1,16 +1,18 @@
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const { node } = require("webpack");
 const outputDir = "./public/dist";
 
 module.exports = {
   entry: path.resolve(__dirname, "./public/src/index.js"),
+
   output: {
     path: path.join(__dirname, outputDir),
     filename: "[name].js",
     publicPath: "/dist/",
   },
   resolve: {
-    extensions: [".js"], // if we were using React.js, we would include ".jsx"
+    extensions: [".js"], // if we were using React.js, we would include ".jsx",
   },
   module: {
     rules: [

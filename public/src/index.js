@@ -3,21 +3,22 @@ import Game from "./scripts/game";
 import GameView from "./scripts/game_view";
 import receiveData from "./scripts/api_util";
 import handlePlay from "./scripts/button_util";
+// import readTLE from "./scripts/tle/tle_parse";
 window.addEventListener("DOMContentLoaded", (event) => {
-  // gameview.start();
   const canvas = document.getElementById("canvas");
-  // const ctx = canvas.getContext("2d");
+
   const audioCtx = new AudioContext();
   handlePlay(audioCtx);
-
-  // receiveData.then((response) => {
-  const ISS_TLE = `1 25544U 98067A   21122.75616700  .00027980  00000-0  51432-3 0  9994
-     2 25544  51.6442 207.4449 0002769 310.1189 193.6568 15.48993527281553`;
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-  const g = new Game(canvas.width, canvas.height, ISS_TLE, audioCtx);
-  const gameview = new GameView(ISS_TLE);
-  gameview.start();
+  // readTLE;
+  receiveData.then((response) => {
+    const ISS_TLE = `1 27651U 03004A   21153.50481762  .00000064  00000+0  20724-4 0  9991
+    2 27651  39.9940 177.6513 0023168 320.1011  39.8075 14.89306556996390`;
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    const g = new Game(canvas.width, canvas.height, ISS_TLE, audioCtx);
+    const gameview = new GameView(response, audioCtx);
+    gameview.start();
+  });
   // });
 
   // new Game(canvas.width, canvas.height).start(canvas);

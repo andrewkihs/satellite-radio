@@ -1,5 +1,5 @@
 import map_range from "./math_util";
-class Satellite {
+class SatelliteOsc {
   constructor(satRec, game) {
     this.date = new Date();
     this.positionAndVelocity = satellite.propagate(satRec, this.date);
@@ -12,10 +12,6 @@ class Satellite {
 
     this.game = game;
     this.audioCtx = game.audioCtx;
-
-    console.log(this.position.longitude); // in radians
-    console.log(this.position.latitude); // in radians
-    console.log(this.position.height); // in km
   }
 
   startOsc() {
@@ -29,24 +25,11 @@ class Satellite {
     gainNode.gain.value = 0.001; // 10 %
     gainNode.connect(this.audioCtx.destination);
 
-    // now instead of connecting to aCtx.destination, connect to the gainNode
     this.oscillator.connect(gainNode);
-    // this.oscillator.connect(this.audioCtx.destination);
     this.oscillator.start(0);
   }
 
-  draw(ctx) {
-    // ctx.beginPath();
-    // ctx.arc(this.pos[0], this.pos[1], 2, 0, 2 * Math.PI, true);
-    // ctx.strokeStyle = "blue";
-    // ctx.lineWidth = 10;
-    // ctx.fillStyle = "#46C016";
-    // ctx.fill();
-    // const newFreq = map_range(this.pos[1], 0, this.game.yDim, 0, 20000);
-    // // console.log(newFreq);
-    // debugger;
-    // this.oscillator.frequency.value = newFreq;
-  }
+  draw(ctx) {}
 
   move() {
     // this.pos[0] += this.vel[0];
@@ -80,4 +63,4 @@ class Satellite {
   }
 }
 
-export default Satellite;
+export default SatelliteOsc;

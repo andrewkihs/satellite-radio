@@ -1,4 +1,3 @@
-import Game from "./game";
 import map_range from "./math_util";
 class GameView {
   constructor(tleArr, audioCtx) {

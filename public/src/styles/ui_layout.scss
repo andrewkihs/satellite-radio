@@ -33,7 +33,15 @@
 .bottom-ui {
   position: fixed;
   bottom: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.inner-bottom {
   margin: 2%;
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

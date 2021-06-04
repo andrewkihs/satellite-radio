@@ -6,7 +6,6 @@ const handleAudioPlay = (audioContext) => {
     function () {
       console.log("clicked");
       if (audioCtx.state === "suspended") {
-        debugger;
         audioCtx.resume();
         var oscillator = audioCtx.createOscillator();
 

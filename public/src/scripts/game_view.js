@@ -71,7 +71,6 @@ class GameView {
 
   updateSatelliteOsc(vertices, i) {
     const newFreq = 100;
-    debugger;
     const distFromCenter = Math.sqrt(
       Math.pow(vertices.x, 2) +
         Math.pow(vertices.y, 2) +

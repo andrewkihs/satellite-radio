@@ -14,7 +14,6 @@ const receiveData = axios
     return newData;
   })
   .catch(function (error) {
-    debugger;
     console.log(error);
   });
 

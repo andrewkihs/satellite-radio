@@ -13,8 +13,6 @@ const handleAudioPlay = (audioContext) => {
         oscillator.type = "square";
         oscillator.frequency.value = 440; // value in hertz
         oscillator.start(0);
-        // oscillator.connect(audioCtx.destination);
-        // debugger;
       } else {
         audioCtx.suspend();
       }
@@ -47,6 +45,7 @@ const handlePlaybackSpeed = () => {
     function () {
       let playbackRate = slider.value;
       window.clock.rate(playbackRate);
+      window.rate = playbackRate;
     },
     false
   );

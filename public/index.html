@@ -20,9 +20,12 @@
   <div class="ui-elem">
     <div id="abt-modal" class='abt-modal'>
       <h1> About this project</h1>
-      <p>This is where I will put content for this project. About it, etc
-        lorem ipsum hello i think this will be cool. lots of fun info. Lots of cool
-        things are going to happen on this website in the future </p>
+      <br/>
+      <p>This project tracks the motion of satellites in a 3D space 
+        and uses its location to inform audio cues. In its current iteration,
+        oscillator frequency is based on 256 satellites individual distance to the center
+        of the earth. All satellite information is fetched via CelestTrak on page load.
+      </p>
       <button class="modal-close-btn" id="close-btn">Close</button>
     </div>
     <div class="top-ui">
@@ -40,6 +43,9 @@
       <div class="inner-bottom">
 
         <div class="bottom-left-ui">
+          <h1 class='playback-speed'>
+            Playback Speed
+          </h1>
           <input 
           id='playback-slider'
           type="range" 

@@ -7,14 +7,17 @@ class GameView {
     this.satOscillators = [];
     this.addSatellites();
     this.t = 0;
-    this.activeClock = this.clock().rate(100).date(new Date().getTime());
+    window.rate = 1;
+    this.activeClock = this.clock()
+      .rate(window.rate)
+      .date(new Date().getTime());
     window.clock = this.activeClock;
   }
 
   clock() {
-    var rate = 60; // 1ms elapsed : 60sec simulated
-    var date = new Date().getTime();
-    var elapsed = 0;
+    let rate = 60; // 1ms elapsed : 60sec simulated
+    let date = new Date().getTime();
+    let elapsed = 0;
 
     function clock() {}
 
@@ -68,7 +71,13 @@ class GameView {
 
   updateSatelliteOsc(vertices, i) {
     const newFreq = 100;
-    this.satOscillators[i].frequency.value = vertices.x;
+    debugger;
+    const distFromCenter = Math.sqrt(
+      Math.pow(vertices.x, 2) +
+        Math.pow(vertices.y, 2) +
+        Math.pow(vertices.z, 2)
+    );
+    this.satOscillators[i].frequency.value = distFromCenter;
     const currentOsc = this.satOscillators[i];
   }
 
@@ -129,17 +138,15 @@ class GameView {
       new THREE.PointsMaterial({ color: "green", size: 4 })
     );
     scene.add(satellites);
-    // debugger;
     camera.position.z = 700;
     camera.position.x = 0;
     camera.position.y = 0;
     const satRecs = this.satRecs;
     const newActiveClock = this.activeClock;
-    // const updateOscillators = this.updateSatelliteOsc;
     const animate = (t) => {
       const date = new Date(newActiveClock.elapsed(t).date());
       requestAnimationFrame(animate);
-      line.rotation.y += 0.001;
+      line.rotation.y += (1 / 86400) * window.rate; // rotates once a day * rate of playback
       for (let i = 0; i < satRecs.length; i++) {
         satellites.geometry.vertices[i] = satelliteVectorFunc(satRecs[i], date);
         if (i < 256) {

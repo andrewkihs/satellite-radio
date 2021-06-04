@@ -1,6 +1,10 @@
 {
   "name": "satellite-radio",
   "version": "1.0.0",
+  "engines": {
+    "node": ">=10.13.0",
+    "npm": ">=6.4.1"
+  },
   "description": "Satellite Radio is a data visualizer that fetches asteroid data to inform video and audio across the web page.",
   "main": "index.js",
   "browserslist": [

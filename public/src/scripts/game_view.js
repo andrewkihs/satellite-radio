@@ -1,6 +1,5 @@
 import Game from "./game";
 import map_range from "./math_util";
-// import { scene, camera, renderer } from "./three/three_map";
 class GameView {
   constructor(tleArr, audioCtx) {
     this.tleArr = tleArr;
@@ -47,21 +46,20 @@ class GameView {
         this.tleArr[i].split("\n")[1].trim()
       );
       this.satRecs.push(satrec);
-      this.createSatelliteOsc(satrec);
+      if (i < 256) {
+        // create oscillators for select satellites to mitigate use of memory
+        this.createSatelliteOsc(satrec);
+      }
     }
   }
 
   createSatelliteOsc(satrec) {
     const oscillatorNode = this.audioCtx.createOscillator();
     oscillatorNode.type = "sine";
-    // console.log(satrec);
-    // debugger;
-    // const newFreq = (satrec.epochdays * satrec.d3) % 2050;
     const newFreq = 100;
     oscillatorNode.frequency.value = newFreq;
-    // console.log(newFreq);
     const gainNode = this.audioCtx.createGain();
-    gainNode.gain.value = 0.01; // 10 %
+    gainNode.gain.value = 0.01; // 01 %
     gainNode.connect(this.audioCtx.destination);
     oscillatorNode.connect(gainNode);
     oscillatorNode.start(0);
@@ -69,13 +67,9 @@ class GameView {
   }
 
   updateSatelliteOsc(vertices, i) {
+    const newFreq = 100;
+    this.satOscillators[i].frequency.value = vertices.x;
     const currentOsc = this.satOscillators[i];
-    // const cutFreq = Math.abs(vertices.x);
-
-    // debugger;
-    // currentOsc.frequency.value = 400;
-    // Math.abs(vertices.x * vertices.y * vertices.z);
-    // const newFreq = map_range(satrec.size, 0, this.game.yDim, 0, 20000);
   }
 
   satelliteVector = (satrec, date) => {
@@ -110,9 +104,8 @@ class GameView {
     );
     const date = new Date();
     const canvasEle = document.getElementById("canvas");
-    // debugger;
-    // console.log(canvasEle);
     const renderer = new THREE.WebGLRenderer({
+      // sets renderer to existing canvas
       antialias: true,
       canvas: canvasEle,
     });
@@ -136,7 +129,7 @@ class GameView {
       new THREE.PointsMaterial({ color: "green", size: 4 })
     );
     scene.add(satellites);
-    debugger;
+    // debugger;
     camera.position.z = 700;
     camera.position.x = 0;
     camera.position.y = 0;
@@ -149,7 +142,9 @@ class GameView {
       line.rotation.y += 0.001;
       for (let i = 0; i < satRecs.length; i++) {
         satellites.geometry.vertices[i] = satelliteVectorFunc(satRecs[i], date);
-        this.updateSatelliteOsc(satellites.geometry.vertices[i], i);
+        if (i < 256) {
+          this.updateSatelliteOsc(satellites.geometry.vertices[i], i);
+        }
       }
       satellites.geometry.verticesNeedUpdate = true;
       renderer.render(scene, camera);

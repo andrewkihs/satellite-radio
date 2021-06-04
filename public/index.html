@@ -13,17 +13,27 @@
 
 <body>
   <script src="./dist/main.js"></script>
-  <div id="overlay"></div>
   <div class="canvas-container">
     <canvas id="canvas"></canvas>
   </div>
+  <div id="overlay" class='overlay'></div>
   <div class="ui-elem">
+    <div id="abt-modal" class='abt-modal'>
+      <h1> About this project</h1>
+      <p>This is where I will put content for this project. About it, etc
+        lorem ipsum hello i think this will be cool. lots of fun info. Lots of cool
+        things are going to happen on this website in the future </p>
+      <button class="modal-close-btn" id="close-btn">Close</button>
+    </div>
     <div class="top-ui">
-      <div class="top-left-ui">
-        <button id='abt-btn'>About</button>
-      </div>
-      <div class="top-right-ui">
-        <button>GitHub</button>
+      <div class="inner-top">
+
+        <div class="top-left-ui">
+          <button id='abt-btn'>About</button>
+        </div>
+        <div class="top-right-ui">
+          <button target="_blank" onclick=" window.open('https://github.com/andrewkihs','_blank')";>GitHub</button>
+        </div>
       </div>
     </div>
     <div class="bottom-ui">

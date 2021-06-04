@@ -23,11 +23,26 @@ const handlePlay = (audioContext) => {
   );
 };
 
-export const handleButton = () => {
+const handleButton = () => {
   document.getElementById("abt-btn").addEventListener("click", function () {
+    console.log("button clicked");
     document.getElementById("overlay").classList.add("is-visible");
-    document.getElementByIdI("abt-modal").classList.add("is-visible");
+    document.getElementById("abt-modal").classList.add("is-visible");
+  });
+
+  document.getElementById("close-btn").addEventListener("click", function () {
+    document.getElementById("overlay").classList.remove("is-visible");
+    document.getElementById("abt-modal").classList.remove("is-visible");
+  });
+  document.getElementById("overlay").addEventListener("click", function () {
+    document.getElementById("overlay").classList.remove("is-visible");
+    document.getElementById("modal").classList.remove("is-visible");
   });
 };
 
-export default handlePlay;
+const handleAllButtons = (audioContext) => {
+  handleButton();
+  handlePlay(audioContext);
+};
+
+export default handleAllButtons;

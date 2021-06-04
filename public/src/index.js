@@ -2,13 +2,14 @@ import "./styles/index.scss";
 import Game from "./scripts/game";
 import GameView from "./scripts/game_view";
 import receiveData from "./scripts/api_util";
-import handlePlay from "./scripts/button_util";
+import handleAllButtons from "./scripts/button_util";
 // import readTLE from "./scripts/tle/tle_parse";
 window.addEventListener("DOMContentLoaded", (event) => {
   const canvas = document.getElementById("canvas");
 
   const audioCtx = new AudioContext();
-  handlePlay(audioCtx);
+  // handlePlay(audioCtx);
+  handleAllButtons(audioCtx);
   // readTLE;
   receiveData.then((response) => {
     const ISS_TLE = `1 27651U 03004A   21153.50481762  .00000064  00000+0  20724-4 0  9991

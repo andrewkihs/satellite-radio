@@ -1,4 +1,4 @@
-const handlePlay = (audioContext) => {
+const handleAudioPlay = (audioContext) => {
   const audioCtx = audioContext;
   const button = document.getElementById("play_pause");
   button.addEventListener(
@@ -23,7 +23,7 @@ const handlePlay = (audioContext) => {
   );
 };
 
-const handleButton = () => {
+const handleModal = () => {
   document.getElementById("abt-btn").addEventListener("click", function () {
     console.log("button clicked");
     document.getElementById("overlay").classList.add("is-visible");
@@ -40,9 +40,22 @@ const handleButton = () => {
   });
 };
 
+const handlePlaybackSpeed = () => {
+  const slider = document.getElementById("playback-slider");
+  slider.addEventListener(
+    "change",
+    function () {
+      let playbackRate = slider.value;
+      window.clock.rate(playbackRate);
+    },
+    false
+  );
+};
+
 const handleAllButtons = (audioContext) => {
-  handleButton();
-  handlePlay(audioContext);
+  handleModal();
+  handleAudioPlay(audioContext);
+  handlePlaybackSpeed();
 };
 
 export default handleAllButtons;

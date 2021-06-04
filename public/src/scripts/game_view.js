@@ -8,6 +8,7 @@ class GameView {
     this.addSatellites();
     this.t = 0;
     this.activeClock = this.clock().rate(100).date(new Date().getTime());
+    window.clock = this.activeClock;
   }
 
   clock() {

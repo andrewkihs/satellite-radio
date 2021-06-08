@@ -2,3 +2,4 @@
 node_modules/
 public/dist/
 !public/dist/index.html
+!public/dist/preview_picture.png

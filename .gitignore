@@ -1,5 +1,9 @@
 .DS_Store
 node_modules/
-public/dist/
-!public/dist/index.html
 !public/dist/preview_picture.png
+public/dist/bundle.js 
+public/dist/bundle.js.map
+public/dist/main.css
+public/dist/main.css.map
+public/dist/main.js.map
+!public/dist/index.html

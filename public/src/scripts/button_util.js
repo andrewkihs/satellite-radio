@@ -4,7 +4,6 @@ const handleAudioPlay = (audioContext) => {
   button.addEventListener(
     "click",
     function () {
-      console.log("clicked");
       if (audioCtx.state === "suspended") {
         audioCtx.resume();
         var oscillator = audioCtx.createOscillator();
@@ -22,7 +21,6 @@ const handleAudioPlay = (audioContext) => {
 
 const handleModal = () => {
   document.getElementById("abt-btn").addEventListener("click", function () {
-    console.log("button clicked");
     document.getElementById("overlay").classList.add("is-visible");
     document.getElementById("abt-modal").classList.add("is-visible");
   });

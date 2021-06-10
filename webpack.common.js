@@ -1,7 +1,6 @@
 const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { node } = require("webpack");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 const outputDir = "./public/dist";
 
 module.exports = {
@@ -82,9 +81,6 @@ module.exports = {
     ],
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      favicon: "./public/src/styles/favicon.ico",
-    }),
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // all options are optional

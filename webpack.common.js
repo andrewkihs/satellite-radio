@@ -89,5 +89,8 @@ module.exports = {
       ignoreOrder: false, // Enable to remove warnings about conflicting order
     }),
     require("autoprefixer"),
+    new HtmlWebpackPlugin({
+      favicon: "./public/src/styles/favicon.ico",
+    }),
   ],
 };

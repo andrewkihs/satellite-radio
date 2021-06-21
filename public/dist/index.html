@@ -1,9 +1,69 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Webpack App</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/dist/favicon.ico"><script defer src="/dist/main.js"></script><link href="/dist/main.css" rel="stylesheet"></head>
-  <body>
-  </body>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta property="og:title" content="Satellite Radio" />
+  <meta property="og:image" content="/preview_picture.png" />
+  <meta property="og:description"
+    content="A satellite data visualizer using information from CelestTrak API to inform audio cues." />
+  <meta property="og:url" content="https://satellite-radio.herokuapp.com/" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/satellite.js/4.0.0/satellite.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/100/three.min.js"></script>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link type='text/css' rel="stylesheet" href="./main.css" />
+  <link rel="icon" href="/dist/favicon.ico">
+  <script defer="defer" src="/dist/main.js"></script>
+  <link href="/dist/main.css" rel="stylesheet">
+  <link rel="icon" type='image/ico' href="./favicon.ico">
+  <title>Satellite Radio</title>
+</head>
+
+<body>
+  <script src="./main.js"></script>
+  <div class="canvas-container">
+    <canvas id="canvas"></canvas>
+  </div>
+  <div id="overlay" class='overlay'></div>
+  <div class="ui-elem">
+    <div id="abt-modal" class='abt-modal'>
+      <h1> About this project</h1>
+      <br />
+      <p>This project tracks the motion of satellites in a 3D space
+        and uses its location to inform audio cues. In its current iteration,
+        oscillator frequency is based on 256 satellites individual distance to the center
+        of the earth. All satellite information is fetched via CelestTrak on page load.
+      </p>
+      <button class="modal-close-btn" id="close-btn">Close</button>
+    </div>
+    <div class="top-ui">
+      <div class="inner-top">
+        <div class="top-left-ui">
+          <button id='abt-btn'>About</button>
+        </div>
+        <div class="top-right-ui">
+          <button target="_blank" onclick=" window.open('https://github.com/andrewkihs','_blank')" ;>GitHub</button>
+          <button target="_blank" onclick=" window.open('https://www.linkedin.com/in/andrew-kihs/','_blank')"
+            ;>LinkedIn</button>
+          <button target="_blank" onclick=" window.open('https://angel.co/u/andrew-kihs','_blank')" ;>AngelList</button>
+        </div>
+      </div>
+    </div>
+    <div class="bottom-ui">
+      <div class="inner-bottom">
+        <div class="bottom-left-ui">
+          <h1 class='playback-speed'>
+            Playback Speed
+          </h1>
+          <input id='playback-slider' type="range" min="1" max="1000" value="50">
+        </div>
+        <div class="bottom-right-ui">
+          <button id='play_pause'>Play/Pause</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
 </html>

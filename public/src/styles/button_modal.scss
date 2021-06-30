@@ -1,11 +1,13 @@
 button {
   background: none;
   color: $green;
+  cursor: pointer;
   border: 1px solid rgb(74, 228, 74);
 }
 
 #playback-slider {
   width: 100%;
+  cursor: pointer;
   margin: 13.8px 0;
   background-color: green;
   -webkit-appearance: none;

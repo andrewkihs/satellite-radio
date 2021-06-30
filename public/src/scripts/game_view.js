@@ -65,7 +65,8 @@ class GameView {
     gainNode.gain.value = 0.01; // 01 %
     gainNode.connect(this.audioCtx.destination);
     oscillatorNode.connect(gainNode);
-    oscillatorNode.start(0);
+    oscillatorNode.start();
+    // oscillatorNode.suspend();
     this.satOscillators.push(oscillatorNode);
   }
 

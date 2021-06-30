@@ -3,9 +3,10 @@ import GameView from "./scripts/game_view";
 import receiveData from "./scripts/api_util";
 import handleAllButtons from "./scripts/button_util";
 import handleStart from "./scripts/handle_start";
+import handleModal from "./scripts/handle_modal";
 window.addEventListener("DOMContentLoaded", (event) => {
   const canvas = document.getElementById("canvas");
-
+  handleModal();
   handleStart().then(() => {
     const audioCtx = new AudioContext();
     const startScreen = document.getElementById("start-screen");

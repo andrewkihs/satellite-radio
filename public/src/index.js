@@ -8,6 +8,10 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
   handleStart().then(() => {
     const audioCtx = new AudioContext();
+    const startScreen = document.getElementById("start-screen");
+    startScreen.style.display = "none";
+    const bottomUiButtons = document.getElementById("bottom-ui-buttons");
+    bottomUiButtons.style.display = "inline-block";
     handleAllButtons(audioCtx);
 
     receiveData.then((response) => {

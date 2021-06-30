@@ -3,7 +3,6 @@ const handleStart = () => {
   return new Promise(
     (resolve, reject) => {
       button.addEventListener("click", () => {
-        console.log("clicked");
         resolve("Sim started, button clicked");
       });
     },

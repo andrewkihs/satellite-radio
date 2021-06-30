@@ -23,7 +23,6 @@ app.get("/satellites/active", (request, response) => {
     })
     .then((body) => {
       let results = JSON.parse(body);
-      console.log(results);
       response.send(results);
     });
 });
@@ -47,12 +46,8 @@ app.get("/satellites/tle", (request, response) => {
       return response.text();
     })
     .then((body) => {
-      console.log(body);
       response.send(body);
     });
 });
 
-app.listen(PORT, () => {
-  console.log(__dirname);
-  console.log(`listening on ${PORT}`);
-});
+app.listen(PORT, () => {});

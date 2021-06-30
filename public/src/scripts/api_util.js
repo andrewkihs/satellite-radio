@@ -14,7 +14,7 @@ const receiveData = axios
     return newData;
   })
   .catch(function (error) {
-    console.log(error);
+    // console.log(error);
   });
 
 export default receiveData;

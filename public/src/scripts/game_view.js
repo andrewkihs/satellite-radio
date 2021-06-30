@@ -66,9 +66,9 @@ class GameView {
     gainNode.connect(this.audioCtx.destination);
     oscillatorNode.connect(gainNode);
     try {
-      oscillatorNode.start();
+      oscillatorNode.start(0);
     } catch (err) {
-      console.log('error')
+      console.log("error");
     }
     // oscillatorNode.suspend();
     this.satOscillators.push(oscillatorNode);

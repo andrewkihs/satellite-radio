@@ -95,11 +95,15 @@ class GameView {
   satrecToXYZ = (satrec, date) => {
     const positionAndVelocity = satellite.propagate(satrec, date);
     const gmst = satellite.gstime(date);
-    const positionGd = satellite.eciToGeodetic(
-      positionAndVelocity.position,
-      gmst
-    );
-    return [positionGd.longitude, positionGd.latitude, positionGd.height];
+    if (Array.isArray(positionAndVelocity)) {
+      return [0, 0, 0];
+    } else {
+      const positionGd = satellite.eciToGeodetic(
+        positionAndVelocity.position,
+        gmst
+      );
+      return [positionGd.longitude, positionGd.latitude, positionGd.height];
+    }
   };
 
   start() {

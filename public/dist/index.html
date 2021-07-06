@@ -26,7 +26,6 @@
     <canvas id="canvas"></canvas>
   </div>
   <div id="overlay" class='overlay'></div>
-  <div class="ui-elem">
     <div id="start-screen" class='start-screen'>
       <button id='start-viz-btn'>Start visualizer</button>
     </div>
@@ -45,6 +44,7 @@
       </p>
       <button class="modal-close-btn" id="close-btn">Close</button>
     </div>
+    </div>
     <div class="top-ui">
       <div class="inner-top">
         <div class="top-left-ui">
@@ -58,17 +58,16 @@
         </div>
       </div>
     </div>
-    <div class="bottom-ui" id='bottom-ui-buttons'>
-      <div class="inner-bottom">
-        <div class="bottom-left-ui">
-          <h1 class='playback-speed'>
-            Playback Speed
-          </h1>
-          <input id='playback-slider' type="range" min="1" max="1000" value="50">
-        </div>
-        <div class="bottom-right-ui">
-          <button id='play_pause'>Play/Pause</button>
-        </div>
+  <div class="bottom-ui" id='bottom-ui-buttons'>
+    <div class="inner-bottom">
+      <div class="bottom-left-ui">
+        <h1 class='playback-speed'>
+          Playback Speed
+        </h1>
+        <input id='playback-slider' type="range" min="1" max="1000" value="50">
+      </div>
+      <div class="bottom-right-ui">
+        <button id='play_pause'>Play/Pause</button>
       </div>
     </div>
   </div>

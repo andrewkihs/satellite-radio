@@ -1,4 +1,5 @@
 import map_range from "./math_util";
+import { TrackballControls } from "./trackball_controls";
 class GameView {
   constructor(tleArr, audioCtx) {
     this.tleArr = tleArr;
@@ -145,14 +146,24 @@ class GameView {
       satGeometry,
       new THREE.PointsMaterial({ color: "green", size: 4 })
     );
+    let controls = new TrackballControls(camera, renderer.domElement);
+    
+    controls.rotateSpeed = 1.0;
+    controls.zoomSpeed = 1.2;
+    controls.panSpeed = 0.8;
+
+    controls.keys = ["KeyA", "KeyS", "KeyD"];
+
     scene.add(satellites);
     camera.position.z = 700;
     camera.position.x = 0;
     camera.position.y = 0;
     const satRecs = this.satRecs;
     const newActiveClock = this.activeClock;
+    
     const animate = (t) => {
       const date = new Date(newActiveClock.elapsed(t).date());
+      controls.update();
       requestAnimationFrame(animate);
       line.rotation.y += (1 / 86400) * window.rate; // rotates once a day * rate of playback
       for (let i = 0; i < satRecs.length; i++) {
@@ -164,7 +175,6 @@ class GameView {
       satellites.geometry.verticesNeedUpdate = true;
       renderer.render(scene, camera);
     };
-
     animate(this.t);
   }
 }

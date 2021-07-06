@@ -2,11 +2,52 @@
 
 ## Background and Overview
 
-Satellite Radio is a data visualizer that fetches asteroid data to inform video and audio across the web page.
+Satellite Radio is a data visualizer that fetches asteroid data to inform video and audio across a web page. [Live site](https://satellite-radio.herokuapp.com/).
 
-## Functionality and MVPs
+## About
+On webpage load, user's will be prompted to start the visualizer in order for the page to fetch satellite data from [CelesTrak](https://celestrak.com/), initialize Web Audio Audio nodes, and give the user the option to read about the project via an 'About' modal. After fetching data on active satellites via Axios and a lightweight node server, the propagation of individual satellites are approximated using [satellite.js](https://github.com/shashwatak/satellite-js) and rendered on screen using [three.js](https://threejs.org/). The coordinates of 256 satellites are used to control the oscillators' respective pitches based on satellite's distance from the earth. Future iterations of this project will likely see more options for controlling oscillators' pitch, allowing the user to seek and adjust knobs similar to an oscillator or well -- satellite radio.
 
-The webpage will mostly function as a data visualizer. To begin, there will be very few UI elements for the user to ineract with. The page will make a fetch request _once_ for data regarding location, trajectory, and speed of satellites. Afterwards, satellites will be displayed on a canvas in the middle of the page with their current position on the screen being updated on render. This running location total of simulated satellite information (position, velocity, etc) control parameters (amplitude, frequency, etc) on individual voices of a WebAudioAPI synthesizer. The result is something that vaguely resembles [this](https://vimeo.com/512320162), an audio-visual boid simulation except this relies on satellite data.
+
+## Technology Used
+- Vanilla JavaScript
+- Node.js
+- Express
+- Axios
+- [Satellite.js](https://github.com/shashwatak/satellite-js)
+- [CelesTrak Orbit API](https://celestrak.com/)
+- [Three.js](https://threejs.org/)
+- Heroku
+
+## View
+
+Below is a truncated view of the website's main feature, a 3D canvas object that allows for zooming and panning via mouse input. 
+
+![zoom/grab example](design_assets/satellite-radio-zoom.gif)
+```javascript 
+//game_view.js
+
+const animate = (t) => {
+      const date = new Date(newActiveClock.elapsed(t).date());
+      controls.update();
+      requestAnimationFrame(animate);
+      line.rotation.y += (1 / 86400) * window.rate; // rotates once a day * rate of playback
+      for (let i = 0; i < satRecs.length; i++) {
+        satellites.geometry.vertices[i] = satelliteVectorFunc(satRecs[i], date);
+        if (i < 256) { // only update audio for first 256 satellites
+          this.updateSatelliteOsc(satellites.geometry.vertices[i], i);
+        }
+      }
+      satellites.geometry.verticesNeedUpdate = true;
+      renderer.render(scene, camera);
+    };
+    animate(this.t);
+  }
+
+```
+## Looking forward
+The webpage is meant to be very sparse, there are several means through which users may interact with the site (dragging/zooming animation, adjusting playback speed). In the future, there is room for more features that invite user interaction, most revolving around audio manipulation.
+
+The page makes a fetch request _once_ for data regarding location, trajectory, and speed of satellites. Afterwards, satellites are displayed on a 3D canvas in the middle of the page with their current position on the screen being updated on render. This running location total of simulated satellite information (position, velocity, etc) control parameters (amplitude, frequency, etc) on individual voices of a WebAudioAPI oscillators. 
 
 ### MVPS
 
@@ -18,7 +59,7 @@ The webpage will mostly function as a data visualizer. To begin, there will be v
 
 ## Wireframes
 
-![wireframe](design_assets/wireframe.png)
+![zoom/grab example](design_assets/satellite-radio-zoom.gif)
 
 The layout of the site is very sparse, meant to be more zen than anything. The canvas will stretch the display with only a few points of user interaction. On top will be an about section with contact information on the right. On the bottom is a speed control and play controls (may be mute/unmute and/or volume buttons in future iterations)
 

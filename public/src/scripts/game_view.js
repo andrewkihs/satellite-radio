@@ -43,6 +43,7 @@ class GameView {
 
     return clock;
   }
+
   addSatellites() {
     for (let i = 0; i < this.tleArr.length; i++) {
       let satrec = satellite.twoline2satrec(
@@ -159,10 +160,10 @@ class GameView {
     camera.position.x = 0;
     camera.position.y = 0;
     const satRecs = this.satRecs;
-    const newActiveClock = this.activeClock;
+    const activeClockInst = this.activeClock;
     
     const animate = (t) => {
-      const date = new Date(newActiveClock.elapsed(t).date());
+      const date = new Date(activeClockInst.elapsed(t).date());
       controls.update();
       requestAnimationFrame(animate);
       line.rotation.y += (1 / 86400) * window.rate; // rotates once a day * rate of playback

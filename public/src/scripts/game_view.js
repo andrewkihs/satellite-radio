@@ -99,10 +99,11 @@ class GameView {
       r * Math.sin(phi)
     );
   };
+
   satrecToXYZ = (satrec, date) => {
     const positionAndVelocity = satellite.propagate(satrec, date);
     const gmst = satellite.gstime(date);
-    if (Array.isArray(positionAndVelocity)) {
+    if (Array.isArray(positionAndVelocity)) { // safeguard against satellites returning undefined position
       return [0, 0, 0];
     } else {
       const positionGd = satellite.eciToGeodetic(

@@ -10,7 +10,7 @@ app.get("/", (request, res) => {
   res.sendFile(path.join(__dirname, "./public/dist/index.html"));
 });
 
-// create route to get single book by its isbn
+
 app.get("/satellites/active", (request, response) => {
   // make api call using fetch
   //

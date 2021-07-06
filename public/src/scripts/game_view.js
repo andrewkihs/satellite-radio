@@ -118,7 +118,7 @@ class GameView {
       75,
       window.innerWidth / window.innerHeight,
       0.1,
-      1000
+      10000
     );
     const date = new Date();
     const canvasEle = document.getElementById("canvas");

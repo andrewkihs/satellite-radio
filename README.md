@@ -63,6 +63,21 @@ DMSP 5D-3 F15 (USA 147)
 ...
 ```
 
+```javascript 
+satrecToXYZ = (satrec, date) => {
+    const positionAndVelocity = satellite.propagate(satrec, date);
+    const gmst = satellite.gstime(date);
+    if (Array.isArray(positionAndVelocity)) { // safeguard against satellites returning undefined position
+      return [0, 0, 0];
+    } else {
+      const positionGd = satellite.eciToGeodetic(
+        positionAndVelocity.position,
+        gmst
+      );
+      return [positionGd.longitude, positionGd.latitude, positionGd.height];
+    }
+  };
+```
 This data is then passed into `satellite.js` and returned as an array with the shape `[x, y, z]` for use with `Three.js`
 
 ## Looking forward
@@ -74,4 +89,4 @@ The webpage is meant to be very sparse, there are several means through which us
 
 - User can limit information fed to oscillators
 
-- Polished audio components
+- More elegant UI (playback speed is shown as simulated time ie: `4x speed` or `1 day = 1 sec`)

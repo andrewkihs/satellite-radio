@@ -2,7 +2,7 @@
 
 ## Background and Overview
 
-Satellite Radio is a data visualizer that fetches asteroid data to inform video and audio across a web page. [Live site](https://satellite-radio.herokuapp.com/).
+Satellite Radio is a data visualizer that fetches satellite data to inform video and audio across a web page. [Live site](https://satellite-radio.herokuapp.com/).
 
 ## About
 On webpage load, user's will be prompted to start the visualizer in order for the page to fetch satellite data from [CelesTrak](https://celestrak.com/), initialize Web Audio Audio nodes, and give the user the option to read about the project via an 'About' modal. After fetching data on active satellites via Axios and a lightweight node server, the propagation of individual satellites are approximated using [satellite.js](https://github.com/shashwatak/satellite-js) and rendered on screen using [three.js](https://threejs.org/). The coordinates of 256 satellites are used to control the oscillators' respective pitches based on satellite's distance from the earth. Future iterations of this project will likely see more options for controlling oscillators' pitch, allowing the user to seek and adjust knobs similar to an oscillator or well -- satellite radio.
